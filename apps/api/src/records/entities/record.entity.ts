@@ -1,1 +1,7 @@
-export class Record {}
+export class Record {
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+}
