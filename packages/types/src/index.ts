@@ -6,8 +6,16 @@ export interface UserRecord {
   createdAt: Date;
 }
 
-// Тип для создания записи (без id и даты, так как их генерирует бэкенд)
+export interface CreateUserDto {
+  email: string;
+  password: string;
+}
+
+export interface UserProfile {
+  id: string;
+  email: string;
+}
+
 export type CreateRecordDto = Omit<UserRecord, 'id' | 'createdAt'>;
 
-// Тип для обновления (все поля необязательные)
 export type UpdateRecordDto = Partial<CreateRecordDto>;

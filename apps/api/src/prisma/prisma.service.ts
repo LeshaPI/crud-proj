@@ -1,8 +1,7 @@
-// apps/api/src/prisma/prisma.service.ts
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool, PoolConfig } from 'pg';
+import { PrismaClient } from '@repo/db';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
@@ -14,10 +13,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
     const poolConfig: PoolConfig = { connectionString };
     const pool = new Pool(poolConfig);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
     const adapter = new PrismaPg(pool);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     super({ adapter });
   }
 
