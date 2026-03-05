@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Нужно для корректной работы фильтров Turbo
 
       - uses: pnpm/action-setup@v3
         with:
@@ -42,15 +42,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-
       - name: Generate Prisma
         run: pnpm gen:db
         env:
           DATABASE_URL: "postgresql://postgres:password@localhost:5432/test_db"
 
-
       - name: Run CI tasks
-        run: pnpm turbo run build lint check-types --filter=...[origin/main]
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            pnpm turbo run build lint check-types --filter="...[origin/main]"
+          else
+            pnpm turbo run build lint check-types --filter="...[${{ github.event.before }}...${{ github.sha }}]"
+          fi
         env:
           DATABASE_URL: "postgresql://postgres:password@localhost:5432/test_db"
- 
