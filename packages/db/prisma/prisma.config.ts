@@ -1,5 +1,8 @@
-import 'dotenv/config';
+import { resolve } from 'path';
 import { defineConfig, env } from 'prisma/config';
+import { config } from 'dotenv';
+
+config({ path: resolve(__dirname, '.env') });
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
