@@ -2,12 +2,12 @@
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
   "tasks": {
-    "gen:api": {
+    "gen:db": {
       "inputs": ["apps/api/prisma/schema.prisma"],
       "cache": true
     },
     "build": {
-      "dependsOn": ["^build", "gen:api"],
+      "dependsOn": ["^build", "gen:db"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**"] 
     },
@@ -15,7 +15,7 @@
       "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": ["^check-types", "gen:api"]
+      "dependsOn": ["^check-types", "gen:db"]
     },
     "dev": {
       "cache": false,
