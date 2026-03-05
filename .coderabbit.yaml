@@ -1,0 +1,17 @@
+reviews:
+  auto_review:
+    base_branches:
+      - ".*"
+
+  profile: assertive 
+
+  review_status: true
+
+  path_filters:
+    - "!**/dist/**"
+    - "!**/node_modules/**"
+    - "!**/tests/**"
+    - "!package-lock.json"
+    - "!yarn.lock"
+    - "!pnpm-lock.yaml" 
+    - "!**/prisma/client/**" 
