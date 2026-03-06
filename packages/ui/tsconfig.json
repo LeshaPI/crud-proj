@@ -2,8 +2,13 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "moduleResolution": "node", 
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "module": "ESNext",
+    "jsx": "react-native"
   },
-  "include": ["src"],
+  "include": ["src", "nativewind-env.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

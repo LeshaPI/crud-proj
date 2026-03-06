@@ -1,20 +1,26 @@
-"use client";
+import { Text, TouchableOpacity } from 'react-native';
+import { cssInterop } from 'nativewind'; 
+import { cn } from './utils/cn';
 
-import { ReactNode } from "react";
+cssInterop(TouchableOpacity, { className: "style" });
+cssInterop(Text, { className: "style" });
 
 interface ButtonProps {
-  children: ReactNode;
+  title: string;
+  onPress: () => void;
   className?: string;
-  appName: string;
+  textClassName?: string;
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export const SharedButton = ({ title, onPress, className, textClassName }: ButtonProps) => {
   return (
-    <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+    <TouchableOpacity 
+      onPress={onPress}
+      className={cn("bg-blue-600 p-4 rounded-xl items-center active:opacity-70", className)}
     >
-      {children}
-    </button>
+      <Text className={cn("text-white font-bold text-base", textClassName)}>
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 };

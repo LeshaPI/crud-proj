@@ -3,19 +3,23 @@
   "ui": "tui",
   "tasks": {
     "gen:db": {
-      "inputs": ["apps/api/prisma/schema.prisma"],
+      "inputs": ["packages/db/prisma/schema.prisma"],
       "cache": true
     },
     "build": {
       "dependsOn": ["^build", "gen:db"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**"] 
+      "outputs": [
+        "dist/**", 
+        ".next/**", 
+        "apps/mobile/dist/**"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": ["^check-types", "gen:db"]
+      "dependsOn": ["gen:db"]
     },
     "dev": {
       "cache": false,

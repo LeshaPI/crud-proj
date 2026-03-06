@@ -7,15 +7,20 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "gen:db": "pnpm --filter @repo/db run generate"  
+    "gen:db": "pnpm --filter @repo/db run generate"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
     "turbo": "^2.8.12",
     "typescript": "5.9.2"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "nativewind": "4.2.2"
   }
 }
